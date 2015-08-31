@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>io.leopard</groupId>
+	<artifactId>leopard-security-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>io.leopard.depend</groupId>
+		<artifactId>depend</artifactId>
+		<version>0.0.10</version>
+	</parent>
+
+	<scm>
+		<url>https://github.com/tanhaichao/leopard-security</url>
+		<connection>scm:svn:https://github.com/tanhaichao/leopard-security/trunk</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-security/trunk</developerConnection>
+	</scm>
+
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-mock</artifactId>
+				<version>0.0.3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-jetty</artifactId>
+				<version>0.0.3</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-jdbc</artifactId>
+				<version>0.0.3-SNAPSHOT</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-servlet</artifactId>
+				<version>0.0.2-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-xparam</artifactId>
+				<version>0.0.2-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-passport</artifactId>
+				<version>0.0.2-SNAPSHOT</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>leopard-admin</module>
+	</modules>
+</project>
