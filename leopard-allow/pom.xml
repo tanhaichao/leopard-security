@@ -7,8 +7,6 @@
 	</parent>
 	<artifactId>leopard-allow</artifactId>
 
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
