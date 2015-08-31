@@ -59,5 +59,6 @@
 	</dependencyManagement>
 	<modules>
 		<module>leopard-admin</module>
+		<module>leopard-allow</module>
 	</modules>
 </project>
