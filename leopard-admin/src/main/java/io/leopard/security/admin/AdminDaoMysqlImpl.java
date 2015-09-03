@@ -1,7 +1,6 @@
 package io.leopard.security.admin;
 
 import io.leopard.jdbc.Jdbc;
-import io.leopard.jdbc.StatementParameter;
 import io.leopard.web.passport.PassportValidate;
 import io.leopard.web.xparam.SessUsernameXParam;
 
@@ -44,10 +43,9 @@ public class AdminDaoMysqlImpl implements AdminDao {
 	@Override
 	public Admin get(String username) {
 		String sql = "SELECT * FROM admin where username=? limit 1;";
-		StatementParameter param = new StatementParameter();
-		param.setString(username);
+		// StatementParameter param = new StatementParameter();
+		// param.setString(username);
 
-		Admin admin = jdbc.query(sql, Admin.class, param);
-		return admin;
+		return jdbc.query(sql, Admin.class, username);
 	}
 }
