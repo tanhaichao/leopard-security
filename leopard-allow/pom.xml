@@ -6,6 +6,8 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-allow</artifactId>
+	<name>Leopard-Allow</name>
+	<description>接口访问权限。可以根据IP、签名进行接口权限认证。可细到URL级别进行配置。</description>
 
 	<dependencies>
 		<dependency>
