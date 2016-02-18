@@ -4,7 +4,9 @@
 	<artifactId>leopard-security-parent</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
-
+	<name>Leopard权限认证框架</name>
+	<description>管理员权限、接口IP认证、接口签名认证等功能</description>
+	
 	<parent>
 		<groupId>io.leopard.depend</groupId>
 		<artifactId>depend</artifactId>
