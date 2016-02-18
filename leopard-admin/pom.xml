@@ -6,6 +6,8 @@
 		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>leopard-admin</artifactId>
+	<name>Leopard-Admin</name>
+	<description>运营后台管理员权限框架。管理员配置、权限认证。</description>
 
 	<dependencies>
 		<dependency>
