@@ -9,6 +9,7 @@ public class PassportCheckerAdminImpl implements PassportChecker {
 
 	@Override
 	public boolean isNeedCheckLogin(HttpServletRequest request, Object handler) {
+		new Exception("isNeedCheckLogin").printStackTrace();
 		if (isAdminFolder(request)) {
 			return true;
 		}
