@@ -1,21 +1,21 @@
 package io.leopard.security.admin;
 
-import io.leopard.web.servlet.RegisterHandlerInterceptor;
-import io.leopard.web.servlet.RequestUtil;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import io.leopard.web.servlet.RegisterHandlerInterceptor;
+import io.leopard.web.servlet.RequestUtil;
 
 public class AdminInterceptor extends RegisterHandlerInterceptor {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
 	private static boolean checkAllowIp = true;
 
-	@Autowired
+	@Resource
 	private AdminDao adminDao;
 
 	/**
@@ -44,15 +44,15 @@ public class AdminInterceptor extends RegisterHandlerInterceptor {
 			checkIp(request);
 		}
 
-		String sessUsername = adminDao.getUsername(request, response);
-		if (sessUsername == null || sessUsername.length() == 0) {
+		Long sessUid = adminDao.getUid(request, response);
+		if (sessUid == null || sessUid <= 0) {
 			String ip = RequestUtil.getProxyIp(request);
-			String message = "您[" + ip + "]未登录,uri:" + request.getRequestURI() + " sessUsername:" + sessUsername;
+			String message = "您[" + ip + "]未登录,uri:" + request.getRequestURI() + " sessUid:" + sessUid;
 			logger.warn(message);
 			adminDao.forwardLoginUrl(request, response);
 			return false;
 		}
-		this.adminDao.login(sessUsername, request);
+		this.adminDao.login(sessUid, request);
 		return true;
 	}
 

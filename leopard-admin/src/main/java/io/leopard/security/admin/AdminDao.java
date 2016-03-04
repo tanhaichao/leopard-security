@@ -14,7 +14,7 @@ public interface AdminDao {
 	 * @param response
 	 * @return
 	 */
-	String getUsername(HttpServletRequest request, HttpServletResponse response);
+	Long getUid(HttpServletRequest request, HttpServletResponse response);
 
 	/**
 	 * 转发到登录页面.
@@ -31,8 +31,8 @@ public interface AdminDao {
 	 * @param username
 	 * @param request
 	 */
-	void login(String username, HttpServletRequest request);
+	void login(long uid, HttpServletRequest request);
 
-	Admin get(String username);
+	Admin get(long uid);
 
 }

@@ -1,15 +1,15 @@
 package io.leopard.security.admin;
 
-import io.leopard.jdbc.Jdbc;
-import io.leopard.web.passport.PassportValidate;
-import io.leopard.web.xparam.SessUsernameXParam;
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import io.leopard.jdbc.Jdbc;
+import io.leopard.web.passport.PassportValidate;
+import io.leopard.web.xparam.SessUidXParam;
 
 public class AdminDaoMysqlImpl implements AdminDao {
 
@@ -18,12 +18,12 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	private PassportValidate passportValidate;
 
-	@Autowired(required = false)
-	private SessUsernameXParam sessUsernameXParam;
+	@Autowired
+	private SessUidXParam sessUidXParam;
 
 	@Override
-	public String getUsername(HttpServletRequest request, HttpServletResponse response) {
-		return (String) sessUsernameXParam.getValue(request, null);
+	public Long getUid(HttpServletRequest request, HttpServletResponse response) {
+		return (Long) sessUidXParam.getValue(request, null);
 	}
 
 	@Override
@@ -32,20 +32,17 @@ public class AdminDaoMysqlImpl implements AdminDao {
 	}
 
 	@Override
-	public void login(String username, HttpServletRequest request) {
-		Admin admin = this.get(username);
+	public void login(long uid, HttpServletRequest request) {
+		Admin admin = this.get(uid);
 		if (admin == null) {
 			// logger.info("您[" + username + "]不是管理员.");
-			throw new AdminNotFoundException("您" + username + "不是管理员.");
+			throw new AdminNotFoundException("您[" + uid + "]不是管理员.");
 		}
 	}
 
 	@Override
-	public Admin get(String username) {
-		String sql = "SELECT * FROM admin where username=? limit 1;";
-		// StatementParameter param = new StatementParameter();
-		// param.setString(username);
-
-		return jdbc.query(sql, Admin.class, username);
+	public Admin get(long uid) {
+		String sql = "SELECT * FROM admin where uid=? limit 1;";
+		return jdbc.query(sql, Admin.class, uid);
 	}
 }
