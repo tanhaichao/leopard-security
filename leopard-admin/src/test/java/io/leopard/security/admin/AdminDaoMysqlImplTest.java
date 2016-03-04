@@ -28,8 +28,8 @@ public class AdminDaoMysqlImplTest {
 	public void getUsername() {
 		MockRequest request = new MockRequest();
 		MockResponse response = new MockResponse();
-		request.setSessionAttribute("sessUsername", "hctan");
-		Assert.assertEquals("hctan", adminLoginDaoMysqlImpl.getUsername(request, response));
+		request.setSessionAttribute("sessUid", "1");
+		Assert.assertEquals("1", adminLoginDaoMysqlImpl.getUid(request, response));
 	}
 
 	// @Test
@@ -63,16 +63,16 @@ public class AdminDaoMysqlImplTest {
 	@Test
 	public void login() {
 		AdminDaoMysqlImpl adminLoginDaoMysqlImpl = Mockito.spy(new AdminDaoMysqlImpl());
-		Mockito.doReturn(null).when(adminLoginDaoMysqlImpl).get("hctan");
+		Mockito.doReturn(null).when(adminLoginDaoMysqlImpl).get(1);
 		try {
-			adminLoginDaoMysqlImpl.login("hctan", null);
+			adminLoginDaoMysqlImpl.login(1, null);
 			Assert.fail("怎么没有抛异常?");
 		}
 		catch (AdminNotFoundException e) {
 
 		}
 		Admin admin = Mockito.mock(Admin.class);
-		Mockito.doReturn(admin).when(adminLoginDaoMysqlImpl).get("hctan");
-		adminLoginDaoMysqlImpl.login("hctan", null);
+		Mockito.doReturn(admin).when(adminLoginDaoMysqlImpl).get(1);
+		adminLoginDaoMysqlImpl.login(1, null);
 	}
 }
