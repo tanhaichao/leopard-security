@@ -41,7 +41,7 @@ public class AdminInterceptor extends RegisterHandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("preHandle:" + request.getRequestURI());
+		// logger.info("preHandle:" + request.getRequestURI());
 		// admin过滤器
 		if (!PassportCheckerAdminImpl.isAdminFolder(request)) {
 			return true;
