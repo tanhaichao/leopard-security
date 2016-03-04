@@ -6,11 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.core.annotation.Order;
 
 import io.leopard.web.passport.PassportCheckerImpl;
 import io.leopard.web.servlet.RegisterHandlerInterceptor;
 import io.leopard.web.servlet.RequestUtil;
 
+@Order(99)
 public class AdminInterceptor extends RegisterHandlerInterceptor {
 	protected Log logger = LogFactory.getLog(this.getClass());
 
