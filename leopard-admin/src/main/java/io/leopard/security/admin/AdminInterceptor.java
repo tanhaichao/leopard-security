@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import io.leopard.web.passport.PassportCheckerImpl;
 import io.leopard.web.servlet.RegisterHandlerInterceptor;
 import io.leopard.web.servlet.RequestUtil;
 
@@ -17,6 +18,10 @@ public class AdminInterceptor extends RegisterHandlerInterceptor {
 
 	@Resource
 	private AdminDao adminDao;
+
+	public AdminInterceptor() {
+		PassportCheckerImpl.addPassportChecker(new PassportCheckerAdminImpl());
+	}
 
 	/**
 	 * 判断所在IP能否登录后台系统.
@@ -35,7 +40,7 @@ public class AdminInterceptor extends RegisterHandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		// admin过滤器
-		if (!isAdminFolder(request)) {
+		if (!PassportCheckerAdminImpl.isAdminFolder(request)) {
 			return true;
 		}
 
@@ -54,11 +59,6 @@ public class AdminInterceptor extends RegisterHandlerInterceptor {
 		}
 		this.adminDao.login(sessUid, request);
 		return true;
-	}
-
-	public static boolean isAdminFolder(HttpServletRequest request) {
-		String contextUri = RequestUtil.getRequestContextUri(request);
-		return contextUri.startsWith("/admin/");
 	}
 
 }
