@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public class Admin {
 
+	private long uid;
 	private String username;
 
 	private String name;
@@ -46,6 +47,14 @@ public class Admin {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public long getUid() {
+		return uid;
+	}
+
+	public void setUid(long uid) {
+		this.uid = uid;
 	}
 
 }
