@@ -19,7 +19,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	private PassportValidate passportValidate;
 
-	@Resource // web环境下次参数为null
+	@Autowired(required = false) // web环境下次参数为null
 	private SessUidXParam sessUidXParam;
 
 	@Override
