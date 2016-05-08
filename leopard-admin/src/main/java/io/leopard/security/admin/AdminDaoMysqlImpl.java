@@ -2,6 +2,7 @@ package io.leopard.security.admin;
 
 import java.io.IOException;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +19,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	private PassportValidate passportValidate;
 
-	@Autowired
+	@Resource // web环境下次参数为null
 	private SessUidXParam sessUidXParam;
 
 	@Override
