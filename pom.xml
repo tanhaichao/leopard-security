@@ -6,7 +6,7 @@
 	<packaging>pom</packaging>
 	<name>Leopard权限认证框架</name>
 	<description>管理员权限、接口IP认证、接口签名认证等功能</description>
-	
+
 	<parent>
 		<groupId>io.leopard.depend</groupId>
 		<artifactId>depend</artifactId>
@@ -25,20 +25,20 @@
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-mock</artifactId>
-				<version>0.0.3</version>
+				<version>0.0.6-SNAPSHOT</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-jetty</artifactId>
-				<version>0.0.3</version>
+				<version>0.0.6-SNAPSHOT</version>
 				<scope>test</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-jdbc</artifactId>
-				<version>0.0.3</version>
+				<version>0.0.4-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
@@ -49,13 +49,15 @@
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-xparam</artifactId>
-				<version>0.0.2</version>
+				<version>0.0.3-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-passport</artifactId>
-				<version>0.0.2</version>
+				<version>0.0.3-SNAPSHOT</version>
 			</dependency>
+
+
 
 		</dependencies>
 	</dependencyManagement>
