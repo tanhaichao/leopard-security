@@ -8,11 +8,11 @@ import io.leopard.web.servlet.RequestUtil;
 public class PassportCheckerAdminImpl implements PassportChecker {
 
 	@Override
-	public boolean isNeedCheckLogin(HttpServletRequest request, Object handler) {
+	public Boolean isNeedCheckLogin(HttpServletRequest request, Object handler) {
 		if (isAdminFolder(request)) {
 			return true;
 		}
-		return false;
+		return null;
 	}
 
 	public static boolean isAdminFolder(HttpServletRequest request) {
