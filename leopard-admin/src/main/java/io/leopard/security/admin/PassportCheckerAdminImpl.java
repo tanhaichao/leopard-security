@@ -9,6 +9,7 @@ public class PassportCheckerAdminImpl implements PassportChecker {
 
 	@Override
 	public Boolean isNeedCheckLogin(HttpServletRequest request, Object handler) {
+		// System.err.println("PassportCheckerAdminImpl isNeedCheckLogin:" + request.getRequestURI());
 		if (isAdminFolder(request)) {
 			return true;
 		}
