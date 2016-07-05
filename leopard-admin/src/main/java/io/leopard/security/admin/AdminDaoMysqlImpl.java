@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import io.leopard.jdbc.Jdbc;
-import io.leopard.web.passport.PassportValidate;
+import io.leopard.web.passport.PassportValidator;
 import io.leopard.web.xparam.SessUidXParam;
 
 public class AdminDaoMysqlImpl implements AdminDao {
@@ -16,7 +16,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 	@Autowired
 	private Jdbc jdbc;
 
-	private PassportValidate passportValidate;
+	private PassportValidator passportValidator;
 
 	@Autowired(required = false) // web环境下次参数为null
 	private SessUidXParam sessUidXParam;
@@ -28,7 +28,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	@Override
 	public void forwardLoginUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		passportValidate.showLoginBox(request, response);
+		passportValidator.showLoginBox(request, response);
 	}
 
 	@Override
