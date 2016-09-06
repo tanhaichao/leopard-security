@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.leopard</groupId>
 	<artifactId>leopard-security-parent</artifactId>
-	<version>0.9.8</version>
+	<version>0.9.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Leopard权限认证框架</name>
 	<description>管理员权限、接口IP认证、接口签名认证等功能</description>
@@ -14,9 +14,9 @@
 	</parent>
 
 	<scm>
-		<url>https://github.com/tanhaichao/leopard-security/tags/leopard-security-0.9.8</url>
-		<connection>scm:svn:https://github.com/tanhaichao/leopard-security/tags/leopard-security-0.9.8</connection>
-		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-security/tags/leopard-security-0.9.8</developerConnection>
+		<url>https://github.com/tanhaichao/leopard-security</url>
+		<connection>scm:svn:https://github.com/tanhaichao/leopard-security/trunk</connection>
+		<developerConnection>scm:svn:https://github.com/tanhaichao/leopard-security/trunk</developerConnection>
 	</scm>
 
 	<properties>
