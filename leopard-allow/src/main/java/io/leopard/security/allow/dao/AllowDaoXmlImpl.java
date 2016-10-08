@@ -19,7 +19,7 @@ public class AllowDaoXmlImpl implements AllowDao {
 	protected Map<String, String> cache = new ConcurrentHashMap<String, String>();
 
 	protected InputStream read() throws IOException {
-		System.out.println("read:");
+		// System.out.println("read:");
 		Resource resource = new ClassPathResource("/allow.xml");
 		return resource.getInputStream();
 	}
@@ -36,8 +36,9 @@ public class AllowDaoXmlImpl implements AllowDao {
 			for (int i = 0; i < size; i++) {
 				Element element = (Element) nodeList.item(i);
 				String ip = element.getTextContent();
+				ip = ip.toLowerCase();
 				cache.put(ip, "");
-				System.out.println("ip:" + ip);
+				// System.out.println("ip:" + ip);
 			}
 			input.close();
 		}
@@ -50,6 +51,16 @@ public class AllowDaoXmlImpl implements AllowDao {
 	public Boolean exist(Allow allow) {
 		if (cache.isEmpty()) {
 			this.load();
+		}
+		String env = System.getProperty("LENV");
+		if (env == null) {
+			env = "dev";
+		}
+		else {
+			env = env.toLowerCase();
+		}
+		if (cache.containsKey(env)) {
+			return true;
 		}
 		return cache.containsKey(allow.getIp());
 	}
