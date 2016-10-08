@@ -35,10 +35,9 @@ public class AllowDaoXmlImpl implements AllowDao {
 			int size = nodeList.getLength();
 			for (int i = 0; i < size; i++) {
 				Element element = (Element) nodeList.item(i);
-				String uri = element.getAttribute("uri");
-				String ip = element.getAttribute("ip");
-
-				System.out.println("uri:" + uri + " ip:" + ip);
+				String ip = element.getTextContent();
+				cache.put(ip, "");
+				System.out.println("ip:" + ip);
 			}
 			input.close();
 		}
@@ -50,10 +49,9 @@ public class AllowDaoXmlImpl implements AllowDao {
 	@Override
 	public Boolean exist(Allow allow) {
 		if (cache.isEmpty()) {
-
+			this.load();
 		}
-		String key = allow.toString();
-		return cache.containsKey(key);
+		return cache.containsKey(allow.getIp());
 	}
 
 }

@@ -31,11 +31,14 @@ public class AllowInterceptor extends RegisterHandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		logger.info("preHandle uri:" + request.getRequestURI() + " handler:" + handler.getClass());
+
 		if (!(handler instanceof HandlerMethod)) {
 			return true;
 		}
 		HandlerMethod method = (HandlerMethod) handler;
 		Webservice webservice = method.getMethodAnnotation(Webservice.class);
+		logger.info("preHandle method:" + method + " webservice:" + webservice);
 		if (webservice == null) {
 			return true;
 		}
@@ -47,8 +50,9 @@ public class AllowInterceptor extends RegisterHandlerInterceptor {
 	protected void check(HttpServletRequest request) {
 		String requestUri = RequestUtil.getRequestContextUri(request);
 		String proxyIp = RequestUtil.getProxyIp(request);// TODO 这里要去掉CDN的IP
+		logger.info("check requestUri:" + requestUri + " proxyIp:" + proxyIp);
 
-		allowService.isAllow(requestUri, proxyIp);
+		allowService.checkAllow(requestUri, proxyIp);
 	}
 
 }

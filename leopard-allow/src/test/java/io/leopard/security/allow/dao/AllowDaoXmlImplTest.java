@@ -1,7 +1,5 @@
 package io.leopard.security.allow.dao;
 
-import io.leopard.security.allow.dao.AllowDaoXmlImpl;
-
 import org.junit.Test;
 
 public class AllowDaoXmlImplTest {
@@ -13,10 +11,13 @@ public class AllowDaoXmlImplTest {
 		};
 	};
 
-	
 	@Test
 	public void load() {
-		allowDaoXmlImpl.load();
+		Allow allow = new Allow();
+		allow.setUri("/");
+		allow.setIp("127.0.0.2");
+		boolean flag = allowDaoXmlImpl.exist(allow);
+		System.out.println("flag:" + flag);
 	}
 
 }

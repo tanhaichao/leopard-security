@@ -2,16 +2,16 @@ package io.leopard.security.allow.dao;
 
 public class AllowDaoImpl implements AllowDao {
 
+	private AllowDao allowDao = new AllowDaoXmlImpl();
+
 	@Override
 	public Boolean exist(Allow allow) {
-		// TODO Auto-generated method stub
-		return null;
+		return allowDao.exist(allow);
 	}
 
 	@Override
 	public void load() {
-		// TODO Auto-generated method stub
-
+		allowDao.load();
 	}
 
 }
