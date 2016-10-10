@@ -37,7 +37,11 @@
 				<version>${leopard.unified.version}</version>
 				<scope>test</scope>
 			</dependency>
-
+			<dependency>
+				<groupId>io.leopard</groupId>
+				<artifactId>leopard-cache</artifactId>
+				<version>${leopard.unified.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>io.leopard</groupId>
 				<artifactId>leopard-jdbc</artifactId>
