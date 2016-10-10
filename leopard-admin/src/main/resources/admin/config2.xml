@@ -4,6 +4,6 @@ xmlns:leopard="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/beans/spring-context.xsd">
 
-	<leopard:component-scan base-package="io.leopard.security.admin.version2" />
+	<context:component-scan base-package="io.leopard.security.admin.version2" />
 
 </beans>
