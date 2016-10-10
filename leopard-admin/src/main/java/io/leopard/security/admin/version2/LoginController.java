@@ -57,7 +57,6 @@ public class LoginController {
 	 * 
 	 * @param mobile 手机号
 	 * @param password
-	 * @param captcha 图片校验码
 	 * @param remember 记住登录状态
 	 * @return
 	 * @throws UserNotFoundException
