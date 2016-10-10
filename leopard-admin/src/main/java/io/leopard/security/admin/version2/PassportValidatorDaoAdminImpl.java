@@ -43,7 +43,7 @@ public class PassportValidatorDaoAdminImpl implements PassportValidator {
 		if (!LeopardValidUtil.isValidUid(uid)) {
 			return null;
 		}
-
+		org.springframework.beans.factory.support.BeanNameGenerator  d;
 		String encryptedPassword = PassportTokenUtil.getEncryptedPassword(token);
 		if (StringUtils.isEmpty(encryptedPassword)) {
 			logger.info("validate encryptedPassword:" + encryptedPassword);
