@@ -1,6 +1,7 @@
 package io.leopard.security.admin.menu;
 
 import io.leopard.burrow.ArrayList;
+import io.leopard.json.Json;
 
 public class MenuList extends ArrayList<Menu> {
 
@@ -24,6 +25,10 @@ public class MenuList extends ArrayList<Menu> {
 		menu.setSref(sref);
 		menu.setIcon("icon-graduation");
 		this.add(menu);
+	}
+
+	public String toJson() {
+		return Json.toJson(this);
 	}
 
 	public static Menu createMainNavigation() {
