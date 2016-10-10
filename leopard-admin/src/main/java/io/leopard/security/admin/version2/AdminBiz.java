@@ -38,8 +38,9 @@ public interface AdminBiz {
 	 * @param username
 	 * @param role
 	 * @return
+	 * @throws AdminNotFoundException 
 	 */
-	boolean addRole(String username, String role);
+	boolean addRole(String username, String role) throws AdminNotFoundException;
 
 	/**
 	 * 删除角色
@@ -47,7 +48,8 @@ public interface AdminBiz {
 	 * @param username
 	 * @param role
 	 * @return
+	 * @throws AdminNotFoundException 
 	 */
-	boolean deleteRole(String username, String role);
+	boolean deleteRole(String username, String role) throws AdminNotFoundException;
 
 }

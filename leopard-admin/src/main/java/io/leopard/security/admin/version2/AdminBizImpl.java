@@ -1,11 +1,14 @@
 package io.leopard.security.admin.version2;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.leopard.burrow.lang.LeopardValidUtil;
+import io.leopard.burrow.util.ListUtil;
 import io.leopard.burrow.util.StringUtil;
 import io.leopard.core.exception.forbidden.PasswordWrongException;
 import io.leopard.core.exception.invalid.UsernameInvalidException;
@@ -140,15 +143,37 @@ public class AdminBizImpl implements AdminBiz {
 	}
 
 	@Override
-	public boolean addRole(String username, String role) {
-		String sql = "update admin"
-		return false;
+	public boolean addRole(String username, String role) throws AdminNotFoundException {
+		Admin admin = adminService.getByUsername(username);
+		if (admin == null) {
+			throw new AdminNotFoundException(username);
+		}
+		List<String> roleList = admin.getRoleList();
+		roleList = ListUtil.defaultList(roleList);
+		if (roleList.contains(role)) {
+			return false;
+		}
+		roleList.add(role);
+		return this.updateRoles(username, roleList);
 	}
 
 	@Override
-	public boolean deleteRole(String username, String role) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteRole(String username, String role) throws AdminNotFoundException {
+		Admin admin = adminService.getByUsername(username);
+		if (admin == null) {
+			throw new AdminNotFoundException(username);
+		}
+		List<String> roleList = admin.getRoleList();
+		roleList = ListUtil.defaultList(roleList);
+		roleList.remove(role);
+
+		return this.updateRoles(username, roleList);
+	}
+
+	protected boolean updateRoles(String username, List<String> roleList) {
+		String roles = Json.toJson(roleList);
+		String sql = "update admin set roles=? where username=?";
+		return jdbc.updateForBoolean(sql, roles, username);
 	}
 
 }
