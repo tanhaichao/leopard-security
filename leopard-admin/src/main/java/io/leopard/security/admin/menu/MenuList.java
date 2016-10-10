@@ -7,10 +7,23 @@ public class MenuList extends ArrayList<Menu> {
 	private static final long serialVersionUID = 1L;
 
 	public MenuList() {
-
 		this.add(createMainNavigation());
 		this.add(createDashboard());
+	}
 
+	public void addHeading(String text) {
+		Menu menu = new Menu();
+		menu.setText(text);
+		menu.setHeading(true);
+		this.add(menu);
+	}
+
+	public void addMenu(String text, String sref) {
+		Menu menu = new Menu();
+		menu.setText(text);
+		menu.setSref(sref);
+		menu.setIcon("icon-graduation");
+		this.add(menu);
 	}
 
 	public static Menu createMainNavigation() {
