@@ -1,5 +1,7 @@
 package io.leopard.security.admin.version2;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +15,15 @@ import io.leopard.data.kit.password.PassportTokenUtil;
 import io.leopard.data.kit.password.PasswordUtil;
 import io.leopard.data.kit.password.PasswordVerifier;
 import io.leopard.data.kit.password.PasswordVerifierImpl;
+import io.leopard.json.Json;
 
 @Service
 public class AdminBizImpl implements AdminBiz {
 
 	@Autowired
 	private AdminService adminService;
-	@Autowired
+
+	@Resource
 	private AdminApi adminApi;
 
 	private PasswordVerifier passwordVerifier = new PasswordVerifierImpl();
@@ -95,6 +99,40 @@ public class AdminBizImpl implements AdminBiz {
 		admin.setSalt(salt);
 		admin.setPassword(encryptedPassword);
 		return this.adminService.add(admin);
+	}
+
+	public static <T> T convert2(Object obj, Class<T> clazz) {
+		if (obj == null) {
+			return null;
+		}
+		String json = Json.toJson(obj);
+		return Json.toObject(json, clazz, true);
+	}
+
+	@Override
+	public AdminVO getByUsername(String username) {
+		if (this.adminApi == null) {
+			Admin admin = adminService.getByUsername(username);
+			return convert2(admin, AdminVO.class);
+		}
+		return this.adminApi.getByUsername(username);
+	}
+
+	@Override
+	public AdminVO get(long adminId) {
+		if (this.adminApi == null) {
+			Admin admin = adminService.get(adminId);
+			return convert2(admin, AdminVO.class);
+		}
+		return this.adminApi.get(adminId);
+	}
+
+	@Override
+	public boolean isTopdomainCookie() {
+		if (this.adminApi == null) {
+			return false;
+		}
+		return adminApi.isTopdomainCookie();
 	}
 
 }

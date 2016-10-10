@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,9 +32,6 @@ public class LoginController {
 
 	@Resource
 	private AdminBiz adminBiz;
-
-	@Autowired
-	private AdminApi adminApi;
 
 	private PasswordVerifier passwordVerifier = new PasswordVerifierImpl();
 
@@ -70,7 +66,7 @@ public class LoginController {
 		LeopardCheckUtil.isUsername(username);
 		isPassword(password);
 
-		AdminVO admin = this.adminApi.getByUsername(username);
+		AdminVO admin = this.adminBiz.getByUsername(username);
 		if (admin == null) {
 			AdminNotFoundException e = new AdminNotFoundException(0);
 			e.setMessage("管理员[" + username + "]不存在.");

@@ -20,4 +20,16 @@ public interface AdminBiz {
 
 	String getName(long adminId) throws AdminNotFoundException;
 
+	////
+	AdminVO getByUsername(String username);
+
+	AdminVO get(long adminId);
+
+	/**
+	 * 是否向顶级域名写cookie.
+	 * 
+	 * @return
+	 */
+	boolean isTopdomainCookie();
+
 }
