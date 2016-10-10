@@ -28,7 +28,7 @@ import io.leopard.web.servlet.CookieBuilder;
  *
  */
 @Controller
-@RequestMapping
+@RequestMapping("/admin/")
 public class LoginController {
 
 	@Resource
@@ -82,7 +82,7 @@ public class LoginController {
 		String token = passwordVerifier.makeToken(dbEncryptedPassword);
 
 		int maxAge = -1;// 60 * 60 * 24 * 7;
-		new CookieBuilder("a_uid", admin.getAdminId(), response).setMaxAge(maxAge, remember).setTopLevelDomain(request).build();
+		new CookieBuilder("adminId", admin.getAdminId(), response).setMaxAge(maxAge, remember).setTopLevelDomain(request).build();
 		new CookieBuilder("a_token", token, response).setMaxAge(maxAge, remember).setTopLevelDomain(request).build();
 
 		return true;

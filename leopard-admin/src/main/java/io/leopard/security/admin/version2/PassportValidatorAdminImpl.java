@@ -25,9 +25,9 @@ import io.leopard.web.servlet.CookieUtil;
  */
 @Component
 @PassportGroup("sessAdminId")
-public class PassportValidatorDaoAdminImpl implements PassportValidator {
+public class PassportValidatorAdminImpl implements PassportValidator {
 
-	protected Log logger = LogFactory.getLog(PassportValidatorDaoAdminImpl.class);
+	protected Log logger = LogFactory.getLog(PassportValidatorAdminImpl.class);
 
 	@Autowired
 	private AdminBiz adminBiz;
@@ -37,13 +37,13 @@ public class PassportValidatorDaoAdminImpl implements PassportValidator {
 
 	@Override
 	public Object validate(HttpServletRequest request, HttpServletResponse response) {
-		long uid = NumberUtils.toLong(CookieUtil.getCookie("a_uid", request));
+		long uid = NumberUtils.toLong(CookieUtil.getCookie("adminId", request));
 		String token = CookieUtil.getCookie("a_token", request);
 
 		if (!LeopardValidUtil.isValidUid(uid)) {
 			return null;
 		}
-		org.springframework.beans.factory.support.BeanNameGenerator  d;
+		org.springframework.beans.factory.support.BeanNameGenerator d;
 		String encryptedPassword = PassportTokenUtil.getEncryptedPassword(token);
 		if (StringUtils.isEmpty(encryptedPassword)) {
 			logger.info("validate encryptedPassword:" + encryptedPassword);
@@ -83,7 +83,7 @@ public class PassportValidatorDaoAdminImpl implements PassportValidator {
 	public Boolean isNeedCheckLogin(HttpServletRequest request, Object handler) {
 		String uri = request.getRequestURI();
 		if (uri.startsWith("/admin/")) {
-//			return true;
+			// return true;
 		}
 		Boolean isNeedCheckLogin = passportChecker.isNeedCheckLogin(request, handler);
 		return isNeedCheckLogin;
