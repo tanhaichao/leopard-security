@@ -26,7 +26,7 @@ import io.leopard.web.servlet.RegisterHandlerInterceptor;
  */
 @Component
 @Order(9)
-public class AllowInterceptor extends RegisterHandlerInterceptor {
+public class RoleInterceptor extends RegisterHandlerInterceptor {
 
 	protected Log logger = LogFactory.getLog(this.getClass());
 
