@@ -31,14 +31,14 @@ public class AllowInterceptor extends RegisterHandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("preHandle uri:" + request.getRequestURI() + " handler:" + handler.getClass());
+		// logger.info("preHandle uri:" + request.getRequestURI() + " handler:" + handler.getClass());
 
 		if (!(handler instanceof HandlerMethod)) {
 			return true;
 		}
 		HandlerMethod method = (HandlerMethod) handler;
 		Webservice webservice = method.getMethodAnnotation(Webservice.class);
-		logger.info("preHandle method:" + method + " webservice:" + webservice);
+		// logger.info("preHandle method:" + method + " webservice:" + webservice);
 		if (webservice == null) {
 			return true;
 		}

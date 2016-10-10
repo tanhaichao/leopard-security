@@ -60,8 +60,6 @@ public class LoginController {
 	 * @throws AdminNotFoundException
 	 * @axure 1_2
 	 */
-	@RequestMapping
-	@ResponseBody
 	public boolean login(String username, String password, boolean remember, HttpServletRequest request, HttpServletResponse response) throws PasswordWrongException, AdminNotFoundException {
 		LeopardCheckUtil.isUsername(username);
 		isPassword(password);

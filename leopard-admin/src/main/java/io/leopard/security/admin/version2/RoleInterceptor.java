@@ -35,7 +35,7 @@ public class RoleInterceptor extends RegisterHandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-		logger.info("preHandle uri:" + request.getRequestURI() + " handler:" + handler.getClass());
+		// logger.info("preHandle uri:" + request.getRequestURI() + " handler:" + handler.getClass());
 		if (!(handler instanceof HandlerMethod)) {
 			return true;
 		}
