@@ -1,7 +1,5 @@
 package io.leopard.security.admin.version2;
 
-
-
 import io.leopard.core.exception.NotFoundException;
 
 /**
@@ -18,4 +16,7 @@ public class AdminNotFoundException extends NotFoundException {
 		super("管理员[" + adminId + "]不存在.");
 	}
 
+	public AdminNotFoundException(String username) {
+		super("管理员[" + username + "]不存在.");
+	}
 }
