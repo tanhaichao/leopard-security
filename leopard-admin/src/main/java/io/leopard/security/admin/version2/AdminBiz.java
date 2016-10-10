@@ -54,4 +54,8 @@ public interface AdminBiz {
 
 	boolean updatePassword(long adminId, String oldPassword, String newPassword, String confirmPassword) throws PasswordWrongException, AdminDisabledException, AdminNotFoundException;
 
+	boolean disable(long adminId);
+
+	boolean enable(long adminId);
+
 }

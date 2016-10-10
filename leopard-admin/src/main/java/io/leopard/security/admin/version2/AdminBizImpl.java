@@ -199,4 +199,15 @@ public class AdminBizImpl implements AdminBiz {
 		return jdbc.updateForBoolean(sql, roles, username);
 	}
 
+	@Override
+	public boolean disable(long adminId) {
+		String sql = "update gen_admin set disabled=1 where adminId=?";
+		return this.jdbc.updateForBoolean(sql, adminId);
+	}
+
+	@Override
+	public boolean enable(long adminId) {
+		String sql = "update gen_admin set disabled=0 where adminId=?";
+		return this.jdbc.updateForBoolean(sql, adminId);
+	}
 }
