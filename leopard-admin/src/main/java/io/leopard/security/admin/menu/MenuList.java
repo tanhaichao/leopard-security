@@ -28,7 +28,7 @@ public class MenuList extends ArrayList<Menu> {
 	}
 
 	public String toJson() {
-		return Json.toJson(this);
+		return Json.toFormatJson(this);
 	}
 
 	public static Menu createMainNavigation() {
