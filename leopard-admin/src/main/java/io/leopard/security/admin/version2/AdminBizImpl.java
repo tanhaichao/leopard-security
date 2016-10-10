@@ -53,7 +53,7 @@ public class AdminBizImpl implements AdminBiz {
 		}
 		Admin admin = adminService.getByUsername(username);
 		if (admin == null) {
-			throw new AdminNotFoundException(0);// TODO low 没有传递mobile参数
+			throw new AdminNotFoundException(0);
 		}
 		String salt = admin.getSalt();
 		String dbPassword = admin.getPassword();
