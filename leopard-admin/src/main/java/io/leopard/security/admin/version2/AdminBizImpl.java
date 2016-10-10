@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import io.leopard.burrow.lang.AssertUtil;
 import io.leopard.burrow.lang.LeopardValidUtil;
 import io.leopard.burrow.util.ListUtil;
 import io.leopard.burrow.util.StringUtil;
@@ -140,6 +141,28 @@ public class AdminBizImpl implements AdminBiz {
 			return false;
 		}
 		return adminApi.isTopdomainCookie();
+	}
+
+	@Override
+	public boolean updatePassword(long adminId, String oldPassword, String newPassword, String confirmPassword) throws PasswordWrongException, AdminDisabledException, AdminNotFoundException {
+		AssertUtil.assertNotEmpty(oldPassword, "旧密码不能为空.");
+		AssertUtil.assertNotEmpty(newPassword, "新密码不能为空.");
+		AssertUtil.assertNotEmpty(confirmPassword, "确认密码不能为空.");
+		// CheckUtil.isPassword(oldPassword);
+		// CheckUtil.isPassword(newPassword);
+		// CheckUtil.isPassword(confirmPassword);
+
+		if (!newPassword.equals(confirmPassword)) {
+			throw new IllegalArgumentException("两次密码不一致.");
+		}
+
+		// Admin admin = this.adminService.get(sessAdminId);
+		this.login(adminId, oldPassword);
+
+		String salt = StringUtil.uuid().substring(0, 7);
+		String encryptedPassword = PasswordUtil.encryptPassword(newPassword, salt);
+		String sql = "update gen_admin set salt=?,password=? where adminId=?";
+		return jdbc.updateForBoolean(sql, salt, encryptedPassword, adminId);
 	}
 
 	@Override

@@ -52,4 +52,6 @@ public interface AdminBiz {
 	 */
 	boolean deleteRole(String username, String role) throws AdminNotFoundException;
 
+	boolean updatePassword(long adminId, String oldPassword, String newPassword, String confirmPassword) throws PasswordWrongException, AdminDisabledException, AdminNotFoundException;
+
 }
