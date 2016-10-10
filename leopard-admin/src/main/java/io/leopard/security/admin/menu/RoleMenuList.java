@@ -18,6 +18,7 @@ public class RoleMenuList extends MenuList {
 
 	public RoleMenuList(List<String> roleList) {
 		this.roleList = ListUtil.defaultList(roleList);
+		// System.err.println("roleList:" + roleList);
 	}
 
 	protected boolean hasRole(Role... roles) {
@@ -37,15 +38,15 @@ public class RoleMenuList extends MenuList {
 		if (!hasRole(roles)) {
 			return;
 		}
-		Menu menu = new Menu();
-		menu.setText(text);
-		menu.setHeading(true);
-		this.add(menu);
+
+		super.addHeading(text);
 	}
 
 	public void addMenu(String text, String sref, Role... roles) {
 		if (!hasRole(roles)) {
 			return;
 		}
+
+		super.addMenu(text, sref);
 	}
 }
