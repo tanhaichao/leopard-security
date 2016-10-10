@@ -33,8 +33,9 @@ public class LoginController {
 
 	@Resource
 	private AdminBiz adminBiz;
+
 	@Autowired
-	private AdminService adminService;
+	private AdminApi adminApi;
 
 	private PasswordVerifier passwordVerifier = new PasswordVerifierImpl();
 
@@ -70,7 +71,7 @@ public class LoginController {
 		LeopardCheckUtil.isUsername(username);
 		isPassword(password);
 
-		Admin admin = this.adminService.getByUsername(username);
+		AdminVO admin = this.adminApi.getByUsername(username);
 		if (admin == null) {
 			AdminNotFoundException e = new AdminNotFoundException(0);
 			e.setMessage("管理员[" + username + "]不存在.");

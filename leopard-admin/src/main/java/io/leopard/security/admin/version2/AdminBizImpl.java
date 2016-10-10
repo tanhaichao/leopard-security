@@ -19,6 +19,8 @@ public class AdminBizImpl implements AdminBiz {
 
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private AdminApi adminApi;
 
 	private PasswordVerifier passwordVerifier = new PasswordVerifierImpl();
 
@@ -27,8 +29,7 @@ public class AdminBizImpl implements AdminBiz {
 		if (adminId <= 0) {
 			throw new AdminIdInvalidException(adminId);
 		}
-
-		Admin admin = adminService.get(adminId);
+		AdminVO admin = adminApi.get(adminId);
 		if (admin == null) {
 			throw new AdminNotFoundException(adminId);
 		}
@@ -51,7 +52,7 @@ public class AdminBizImpl implements AdminBiz {
 		if (!LeopardValidUtil.isValidUsername(username)) {
 			throw new UsernameInvalidException(username);
 		}
-		Admin admin = adminService.getByUsername(username);
+		AdminVO admin = adminApi.getByUsername(username);
 		if (admin == null) {
 			throw new AdminNotFoundException(0);
 		}
@@ -73,7 +74,7 @@ public class AdminBizImpl implements AdminBiz {
 
 	@Override
 	public String getName(long adminId) throws AdminNotFoundException {
-		Admin admin = this.adminService.get(adminId);
+		AdminVO admin = this.adminApi.get(adminId);
 		if (admin == null) {
 			throw new AdminNotFoundException(adminId);
 		}

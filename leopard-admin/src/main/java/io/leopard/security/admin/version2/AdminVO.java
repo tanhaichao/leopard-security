@@ -16,6 +16,25 @@ public class AdminVO {
 	 */
 	private String name;
 
+	/**
+	 * 密码
+	 */
+	private String password;
+	/**
+	 * 随机码
+	 */
+	private String salt;
+
+	/**
+	 * 是否已禁用
+	 */
+	private boolean disabled;
+
+	/**
+	 * 账号
+	 */
+	private String username;
+
 	public long getAdminId() {
 		return adminId;
 	}
@@ -38,6 +57,38 @@ public class AdminVO {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }
