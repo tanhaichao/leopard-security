@@ -172,7 +172,7 @@ public class AdminBizImpl implements AdminBiz {
 
 	protected boolean updateRoles(String username, List<String> roleList) {
 		String roles = Json.toJson(roleList);
-		String sql = "update admin set roles=? where username=?";
+		String sql = "update admin set roleList=? where username=?";
 		return jdbc.updateForBoolean(sql, roles, username);
 	}
 
