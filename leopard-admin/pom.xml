@@ -34,6 +34,10 @@
 		</dependency>
 		<dependency>
 			<groupId>io.leopard</groupId>
+			<artifactId>leopard-kit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.leopard</groupId>
 			<artifactId>leopard-cache</artifactId>
 		</dependency>
 		<dependency>
