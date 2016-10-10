@@ -32,4 +32,22 @@ public interface AdminBiz {
 	 */
 	boolean isTopdomainCookie();
 
+	/**
+	 * 添加角色
+	 * 
+	 * @param username
+	 * @param role
+	 * @return
+	 */
+	boolean addRole(String username, String role);
+
+	/**
+	 * 删除角色
+	 * 
+	 * @param username
+	 * @param role
+	 * @return
+	 */
+	boolean deleteRole(String username, String role);
+
 }

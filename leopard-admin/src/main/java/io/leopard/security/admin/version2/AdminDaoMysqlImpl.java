@@ -22,7 +22,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	@Override
 	public boolean add(Admin admin) {
-		InsertBuilder builder = new NullInsertBuilder("gen_admin");
+		InsertBuilder builder = new NullInsertBuilder("admin");
 		builder.setLong("adminId", admin.getAdminId());
 		builder.setString("username", admin.getUsername());
 		builder.setString("password", admin.getPassword());
@@ -36,33 +36,34 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	@Override
 	public Admin get(Long adminId) {
-		String sql = "select * from gen_admin where adminId=? limit 1;";
+		String sql = "select * from admin where adminId=? limit 1;";
 		return jdbc.query(sql, Admin.class, adminId);
 	}
 
 	@Override
 	public boolean delete(Long adminId, long opuid, Date lmodify) {
-		String sql = "delete from gen_admin where adminId=?;";
+		String sql = "delete from admin where adminId=?;";
 		return jdbc.updateForBoolean(sql, adminId);
 	}
 
 	@Override
 	public List<Admin> list(int start, int size) {
-		String sql = "select * from gen_admin order by posttime desc limit ?,?;";
+		String sql = "select * from admin order by posttime desc limit ?,?;";
 		return jdbc.queryForList(sql, Admin.class, start, size);
 	}
 
 	@Override
 	public Paging<Admin> paging(int start, int size) {
-		String sql = "select * from gen_admin order by posttime desc limit ?,?;";
+		String sql = "select * from admin order by posttime desc limit ?,?;";
 		return jdbc.queryForPaging(sql, Admin.class, start, size);
 	}
 
 	@Override
 	public boolean update(Admin admin) {
-		UpdateBuilder builder = new NullUpdateBuilder("gen_admin");
+		UpdateBuilder builder = new NullUpdateBuilder("admin");
 		builder.setString("username", admin.getUsername());
 		builder.setString("password", admin.getPassword());
+		builder.setList("roles", admin.getRoleList());
 		builder.setString("salt", admin.getSalt());
 		builder.setString("name", admin.getName());
 		builder.setBool("disabled", admin.isDisabled());
@@ -74,7 +75,7 @@ public class AdminDaoMysqlImpl implements AdminDao {
 
 	@Override
 	public Admin getByUsername(String username) {
-		String sql = "select * from gen_admin where username=? limit 1;";
+		String sql = "select * from admin where username=? limit 1;";
 		return jdbc.query(sql, Admin.class, username);
 	}
 }

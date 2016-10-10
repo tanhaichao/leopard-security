@@ -15,6 +15,7 @@ import io.leopard.data.kit.password.PassportTokenUtil;
 import io.leopard.data.kit.password.PasswordUtil;
 import io.leopard.data.kit.password.PasswordVerifier;
 import io.leopard.data.kit.password.PasswordVerifierImpl;
+import io.leopard.jdbc.Jdbc;
 import io.leopard.json.Json;
 
 @Service
@@ -23,8 +24,11 @@ public class AdminBizImpl implements AdminBiz {
 	@Autowired
 	private AdminService adminService;
 
-	@Resource
+	@Resource // 允许为空
 	private AdminApi adminApi;
+
+	@Autowired
+	private Jdbc jdbc;
 
 	private PasswordVerifier passwordVerifier = new PasswordVerifierImpl();
 
@@ -133,6 +137,18 @@ public class AdminBizImpl implements AdminBiz {
 			return false;
 		}
 		return adminApi.isTopdomainCookie();
+	}
+
+	@Override
+	public boolean addRole(String username, String role) {
+		String sql = "update admin"
+		return false;
+	}
+
+	@Override
+	public boolean deleteRole(String username, String role) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
