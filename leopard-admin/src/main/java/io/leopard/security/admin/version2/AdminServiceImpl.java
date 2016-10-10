@@ -5,8 +5,11 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
+
 import io.leopard.lang.Paging;
 
+@Service
 public class AdminServiceImpl implements AdminService {
 
 	@Resource

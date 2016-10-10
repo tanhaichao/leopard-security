@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Repository;
+
 import io.leopard.jdbc.Jdbc;
 import io.leopard.jdbc.builder.InsertBuilder;
 import io.leopard.jdbc.builder.NullInsertBuilder;
@@ -12,6 +14,7 @@ import io.leopard.jdbc.builder.NullUpdateBuilder;
 import io.leopard.jdbc.builder.UpdateBuilder;
 import io.leopard.lang.Paging;
 
+@Repository
 public class AdminDaoMysqlImpl implements AdminDao {
 
 	@Resource
