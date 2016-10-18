@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -47,12 +48,20 @@ public class AllowDaoXmlImpl implements AllowDao {
 		}
 	}
 
+	protected static String getenv(String name) {
+		String value = System.getenv(name);
+		if (StringUtils.isEmpty(value)) {
+			value = System.getProperty(name);
+		}
+		return value;
+	}
+
 	@Override
 	public Boolean exist(Allow allow) {
 		if (cache.isEmpty()) {
 			this.load();
 		}
-		String env = System.getProperty("LENV");
+		String env = getenv("LENV");
 		if (env == null) {
 			env = "dev";
 		}
